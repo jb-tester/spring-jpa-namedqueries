@@ -1,0 +1,31 @@
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 version="2.0">
+    <persistence-unit-metadata>
+        <persistence-unit-defaults>
+            <access>PROPERTY</access>
+        </persistence-unit-defaults>
+    </persistence-unit-metadata>
+    <named-query name="SampleEntity.namesByColor">
+        <query>select s.sample from SampleEntity s where s.color = ?1</query>
+    </named-query>
+    <named-query name="SampleEntity.locateSamplesByName">
+        <query>select s from SampleEntity s where s.sample = ?1</query>
+    </named-query>
+    <entity class="com.mytests.spring.jpa.namedqueries.model.SampleEntity">
+        <table name="sample" schema="jbtests" />
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+            </id>
+            <basic name="version">
+                <column name="version"/>
+            </basic>
+            <basic name="sample">
+                <column name="sample"/>
+            </basic>
+            <basic name="color">
+                <column name="color"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
