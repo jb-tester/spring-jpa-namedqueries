@@ -12,7 +12,7 @@ import java.util.List;
  * *
  */
 public interface SampleRepository extends CrudRepository<SampleEntity, Integer> {
-
+   // named queries from orm.xml
     List<SampleEntity> locateSamplesByName(String name);
     List<String> namesByColor(String color);
 }
