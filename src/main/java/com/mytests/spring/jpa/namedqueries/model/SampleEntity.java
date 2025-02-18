@@ -11,6 +11,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "sample", schema = "jbtests")
+@NamedQuery(name = "SampleEntity.samplesByName", query = "select sample from SampleEntity sample where sample.sample = :name")
 public class SampleEntity {
     private int id;
     private Integer version;

@@ -9,19 +9,33 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringJpaNamedqueriesApplication implements CommandLineRunner {
+
     @Autowired
-    private SampleRepository sampleRepo;
+    private SampleServiceWithSessionFactory sampleServiceWithSessionFactory;
+    @Autowired
+    private SampleServiceWithRepository sampleServiceWithRepository;
+    @Autowired
+    private SampleRepository sampleRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(SpringJpaNamedqueriesApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        for (SampleEntity sample : sampleRepo.locateSamplesByName("new_sample")) {
-            System.out.println(sample);
-        }
-        for (String sample : sampleRepo.namesByColor("red")) {
-            System.out.println(sample);
-        }
+        // queries from orm.xml - repository
+        sampleServiceWithRepository.runQueryFromXml();
+
+        // queries from orm.xml - sessionFactory
+        sampleServiceWithSessionFactory.runQueryFromXml();
+
+        // queries from entity - jpa repository
+        sampleServiceWithRepository.runQueryFromEntity();
+
+        // queries from entity - sessionFactory
+        sampleServiceWithSessionFactory.runQueryFromXml();
+
+        // explicit @Query
+        System.out.println(sampleRepository.foo());
     }
 }

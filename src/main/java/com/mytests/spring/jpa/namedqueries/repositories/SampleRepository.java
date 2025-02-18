@@ -1,6 +1,7 @@
 package com.mytests.spring.jpa.namedqueries.repositories;
 
 import com.mytests.spring.jpa.namedqueries.model.SampleEntity;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -15,4 +16,11 @@ public interface SampleRepository extends CrudRepository<SampleEntity, Integer> 
    // named queries from orm.xml
     List<SampleEntity> locateSamplesByName(String name);
     List<String> namesByColor(String color);
+
+    // named query from entity
+    List<SampleEntity> samplesByName(String name);
+
+
+    @Query("select sample.sample as sample from SampleEntity sample")
+    List<String> foo();
 }
