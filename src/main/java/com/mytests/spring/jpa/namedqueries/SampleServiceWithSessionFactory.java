@@ -16,6 +16,7 @@ public class SampleServiceWithSessionFactory {
     final
     SessionFactory sessionFactory;
 
+    // false autowiring error
     public SampleServiceWithSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -26,6 +27,8 @@ public class SampleServiceWithSessionFactory {
         session.getNamedQuery("SampleEntity.samplesByName").setParameter("name", "new_sample").list().forEach(System.out::println);
         System.out.println("===================");
     }
+
+    // not resolved query name in case of query defined in orm.xml
     public void runQueryFromXml() {
         Session session = sessionFactory.openSession();
         System.out.println("====== named query from orm.xml via sessionFactory =====");
