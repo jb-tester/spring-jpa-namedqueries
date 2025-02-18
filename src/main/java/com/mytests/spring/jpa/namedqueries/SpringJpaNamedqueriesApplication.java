@@ -27,7 +27,7 @@ public class SpringJpaNamedqueriesApplication implements CommandLineRunner {
         sampleServiceWithRepository.runQueryFromXml();
 
         // queries from orm.xml - sessionFactory
-        sampleServiceWithSessionFactory.runQueryFromXml();
+        sampleServiceWithSessionFactory.runQueryFromEntity();
 
         // queries from entity - jpa repository
         sampleServiceWithRepository.runQueryFromEntity();
